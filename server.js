@@ -8,9 +8,13 @@ const PORT = 3000;
 app.use(express.json());
 
 // Serve static files (HTML, images, etc.)
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname , 'public','index.html'));
   });
+
+app.get('/' , (req , res) =>{
+    res.redirect('/home');
+})
 
 // Function to check if userId is unique
 function isUniqueId(userId, callback) {
