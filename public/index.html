@@ -91,17 +91,18 @@
         // Log the unique ID
         const uniqueId = getQueryParam("id");
         if (uniqueId) {
-            fetch('/log', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    userId: uniqueId, 
-                    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-                })
-            })
+            fetch('/api/log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userId: uniqueId,
+                timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            }),
+        })
             .then(response => response.json())
             .then(data => console.log(data.message))
             .catch(err => console.error('Error logging data:', err));
+
         }
     </script>
 </body>
