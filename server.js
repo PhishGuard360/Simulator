@@ -29,7 +29,7 @@ function isUniqueId(userId, callback) {
 }
 
 // Endpoint to log data
-app.post('/log', (req, res) => {
+app.post('https://phish-simulator.vercel.app/log', (req, res) => {
     const { userId, timestamp } = req.body;
 
     if (!userId || !timestamp) {
