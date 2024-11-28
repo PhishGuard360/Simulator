@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Have Been Phished</title>
+
+    <!-- Adding Google Font (optional, you can replace this with your preferred font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif; /* Set new font */
+            background: url('https://i.postimg.cc/rFwdXRkG/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7); /* Optional background for better visibility */
+        }
+
+        .logo-left {
+            width: 100px; /* Increased size for left logo */
+        }
+
+        .right-logos {
+            display: flex; /* Flexbox for aligning logos side by side */
+            justify-content: flex-end; /* Align to the right */
+            gap: 10px; /* Space between logos */
+        }
+
+        .logo-right {
+            width: 100px; /* Standard size for right logos */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 70px); /* Subtract header height */
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
+            text-align: center; /* Centering text */
+        }
+
+        .title {
+            font-size: 48px; /* Larger font size for the title */
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: bold; /* Optional bold for emphasis */
+        }
+
+        .subtitle {
+            font-size: 24px; /* Larger font size for subtitle */
+            color: #f0f0f0;
+            line-height: 1.6;
+            max-width: 600px; /* Increase max-width for more space */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Left Logo -->
+        <img src="https://i.postimg.cc/pVGWj0w8/cg.jpg" alt="Left Logo" class="logo-left">
+        
+        <!-- Right Logos (side by side) -->
+        <div class="right-logos">
+            <img src="https://i.postimg.cc/kX2nvQCH/ngit.jpg" alt="Right Logo 2" class="logo-right">
+        </div>
+    </header>
+    <div class="container">
+        <div class="title">You Have Been Phished!!!</div>
+        <div class="subtitle">
+            Don't click on anonymous links without verifying them. If you ever find such emails, report them as spam and beware of malicious links.
+        </div>
+    </div>
+    <script>
+        // Extract query parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Log the unique ID
+        const uniqueId = getQueryParam("id");
+        if (uniqueId) {
+            fetch('/log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    userId: uniqueId, 
+                    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(err => console.error('Error logging data:', err));
+        }
+    </script>
+</body>
+</html>
