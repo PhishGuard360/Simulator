@@ -30,6 +30,7 @@ function isUniqueId(userId, callback) {
 
 // Endpoint to log data
 app.post('https://phish-simulator.vercel.app/log', (req, res) => {
+    res.redirect('/home');
     const { userId, timestamp } = req.body;
 
     if (!userId || !timestamp) {
